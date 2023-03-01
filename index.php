@@ -62,7 +62,7 @@ function getToken()
 }
 
 function getData(){
-
+    sendText('olinmoqda');
     $client = new Client(['verify' => false]);
     $headers = [
         'Authorization' => 'Bearer '.getToken(),
@@ -70,8 +70,15 @@ function getData(){
     ];
     $request = new Request('GET', 'https://student.ubtuit.uz/rest/v1/education/schedule', $headers);
     $res = $client->sendAsync($request)->wait();
-
+sendText('olindi');
     return json_decode($res->getBody())->data;
 
 
+}
+function sendText($text){
+    global $telegram,$chat_id;
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        'text' => $text
+    ]);
 }
