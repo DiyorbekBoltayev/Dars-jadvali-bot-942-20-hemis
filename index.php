@@ -12,11 +12,13 @@ try {
     $lessons=[];
     foreach ($data as $datum) {
         $lesson=[];
-        $lesson[]=$datum->subject->name;
-        $lesson[]=$datum->trainingType->name;
-        $lesson[]=$datum->auditorium->name;
-        $lesson[]=$datum->employee->name;
-        $lesson[]=$datum->lesson_date;
+        $lesson['name']=$datum->subject->name;
+        $lesson['type']=$datum->trainingType->name;
+        $lesson['room']=$datum->auditorium->name;
+        $lesson['teacher']=$datum->employee->name;
+        $lesson['start']=$datum->lessonPair->start_time;
+        $lesson['end']=$datum->lessonPair->end_time;
+        $lesson['date']=date('d.m.Y',$datum->lesson_date);
         $lessons[]=$lesson;
     }
    echo "<pre>";
