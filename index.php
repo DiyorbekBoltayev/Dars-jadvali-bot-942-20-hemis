@@ -17,7 +17,9 @@ try {
         $lessons[]=$datum->employee->name;
         $lessons[]=$datum->lesson_date;
     }
+   echo "<pre>";
     print_r($lessons);
+    echo "</pre>";
 
 } catch (Exception $e) {
     var_dump($e->getMessage());
