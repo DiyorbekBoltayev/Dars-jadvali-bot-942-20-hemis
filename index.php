@@ -51,7 +51,7 @@ function getData(){
 
     $client = new Client(['verify' => false]);
     $headers = [
-        'Authorization' => 'Bearer'.file_get_contents('token.txt'),
+        'Authorization' => 'Bearer '.file_get_contents('token.txt'),
 
     ];
     $request = new Request('GET', 'https://student.ubtuit.uz/rest/v1/education/schedule', $headers);
