@@ -49,6 +49,11 @@ function getToken()
     $request = new Request('POST', 'https://student.ubtuit.uz/rest/v1/auth/login');
     $res = $client->sendAsync($request, $options)->wait();
     file_put_contents('token.txt',json_decode($res->getBody())->data->token);
+    global $telegram;
+    $telegram->sendMessage([
+        'chat_id'=>$telegram->ChatID(),
+        'text'=>json_encode($res->getBody())
+    ]);
 }
 
 function getData(){
@@ -60,10 +65,7 @@ function getData(){
     ];
     $request = new Request('GET', 'https://student.ubtuit.uz/rest/v1/education/schedule', $headers);
     $res = $client->sendAsync($request)->wait();
-    if ($res->getStatusCode() == 401) {
-        getToken();
-        getData();
-    }
+
     return json_decode($res->getBody())->data;
 
 }
