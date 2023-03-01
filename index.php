@@ -25,7 +25,7 @@ try {
 
     $telegram->sendMessage([
         'chat_id' => $chat_id,
-        'text' => json_encode($text)
+        'text' => "ishlamadi biror xatolik"
     ]);
 
 } catch (Exception $e) {
