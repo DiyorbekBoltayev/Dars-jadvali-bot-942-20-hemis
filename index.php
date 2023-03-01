@@ -21,12 +21,18 @@ try {
         $lesson['date']=date('d.m.Y',$datum->lesson_date);
         $lessons[]=$lesson;
     }
-   echo "<pre>";
-    print_r($lessons);
-    echo "</pre>";
+    $today=date('d.m.Y');
+    $todayLessons='';
+    foreach ($lessons as $lesson) {
+        if($lesson['date']==$today){
+            $todayLessons.=$lesson['name'].' '.$lesson['type'].' '.$lesson['room'].' '.$lesson['teacher'].' '.$lesson['start'].'-'.$lesson['end'].PHP_EOL;
+        }
+    }
+    sendText($todayLessons);
+
 
 } catch (Exception $e) {
-    var_dump($e->getMessage());
+    sendText($e->getMessage());
 }
 
 function getToken()
