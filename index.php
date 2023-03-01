@@ -9,9 +9,16 @@ $telegram=new Telegram($_ENV['TELEGRAM_BOT_TOKEN']);
 $chat_id=$telegram->ChatID();
 try {
     $data=getData();
-    echo '<pre>';
-    var_dump($data);
-    echo '</pre>';
+    $lessons=[];
+    foreach ($data as $datum) {
+        $lessons[]=$datum->subject->name;
+        $lessons[]=$datum->trainingType->name;
+        $lessons[]=$datum->auditorium->name;
+        $lessons[]=$datum->employee->name;
+        $lessons[]=$datum->lesson_date;
+    }
+    print_r($lessons);
+
 } catch (Exception $e) {
     var_dump($e->getMessage());
 }
