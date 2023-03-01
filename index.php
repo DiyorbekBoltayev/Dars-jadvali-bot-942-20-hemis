@@ -8,6 +8,7 @@ require_once 'Telegram.php';
 $telegram=new Telegram($_ENV['TELEGRAM_BOT_TOKEN']);
 $chat_id=$telegram->ChatID();
 try {
+
     $data=getData();
     $lessons=[];
     foreach ($data as $datum) {
@@ -25,7 +26,14 @@ try {
     $todayLessons='';
     foreach ($lessons as $lesson) {
         if($lesson['date']==$today){
-            $todayLessons.=$lesson['name'].' '.$lesson['type'].' '.$lesson['room'].' '.$lesson['teacher'].' '.$lesson['start'].'-'.$lesson['end'].PHP_EOL;
+            $todayLessons.=
+                "📘 ".
+                $lesson['name'].PHP_EOL.
+                '🏷 '.$lesson['type'].
+                '🏛 '.$lesson['room'].
+                '👤 '.$lesson['teacher'].
+                '⏰ '.$lesson['start'].
+                '-'.$lesson['end'].PHP_EOL.PHP_EOL;
         }
     }
     sendText($todayLessons);
