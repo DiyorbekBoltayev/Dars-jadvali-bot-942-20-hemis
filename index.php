@@ -43,10 +43,15 @@ function getData(){
 }
 
 
-
+try {
+    $text= getData();
+}catch (Exception $e){
+    $text=$e->getMessage();
+}
 $telegram=new Telegram($_ENV['TELEGRAM_BOT_TOKEN']);
 $chat_id=$telegram->ChatID();
+$telegram->sendChatAction(['action'=>'typing']);
 $telegram->sendMessage([
     'chat_id'=>$chat_id,
-    'text'=>json_encode(getData(),JSON_PRETTY_PRINT)
+    'text'=>json_encode($text,JSON_PRETTY_PRINT)
 ]);
