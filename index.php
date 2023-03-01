@@ -18,6 +18,8 @@ if ($telegram->text() == '/start') {
 } elseif (
     str_contains($req, '/dars') or
     str_contains($req, 'dars jadvali') or
+    str_contains($req, 'darsnerda') or
+    str_contains($req, 'dars yoqmi') or
     str_contains($req, 'qaysi xona') or
     str_contains($req, 'qaysi dars') or
     str_contains($req, 'dars neda') or
