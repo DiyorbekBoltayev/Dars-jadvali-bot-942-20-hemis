@@ -119,6 +119,7 @@ function sendText($text){
     global $telegram,$chat_id;
     $telegram->sendMessage([
         'chat_id' => $chat_id,
-        'text' => $text
+        'text' => $text,
+        'reply_to_message_id' => $telegram->MessageID()
     ]);
 }
