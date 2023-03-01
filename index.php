@@ -25,16 +25,28 @@ function getToken()
     file_put_contents('token.txt',json_decode($res->getBody())->data->token);
 }
 
+function getData(){
 
-ini_set('display_errors', 1);
-try {
-    getToken();
-}catch (Exception $e){
-    echo $e->getMessage();
+    $client = new Client(['verify' => false]);
+    $headers = [
+        'Authorization' => 'Bearer'.file_get_contents('token.txt'),
+
+    ];
+    $request = new Request('GET', 'https://student.ubtuit.uz/rest/v1/education/schedule', $headers);
+    $res = $client->sendAsync($request)->wait();
+    if ($res->getStatusCode() == 401) {
+        getToken();
+        getData();
+    }
+    return json_decode($res->getBody())->data;
+
 }
+
+
+
 $telegram=new Telegram($_ENV['TELEGRAM_BOT_TOKEN']);
 $chat_id=$telegram->ChatID();
 $telegram->sendMessage([
     'chat_id'=>$chat_id,
-    'text'=>'Hello'
+    'text'=>json_encode(getData(),JSON_PRETTY_PRINT)
 ]);
