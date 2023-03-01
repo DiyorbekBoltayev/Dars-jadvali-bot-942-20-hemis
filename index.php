@@ -7,40 +7,62 @@ require_once 'Telegram.php';
 
 $telegram=new Telegram($_ENV['TELEGRAM_BOT_TOKEN']);
 $chat_id=$telegram->ChatID();
-try {
+$req=$telegram->Text();
 
-    $data=getData();
-    $lessons=[];
+
+
+if ($telegram->text() == '/start') {
+    $content = ['chat_id' => $chat_id, 'text' => 'Assalomu alaykum, Bu bot yordamida 942-20 guruxi talabalarining joriy sanadagi dars jadvalini olishingiz mumkin, /dars deb yozing yoki 
+    shu manodagi matn yuboring, masalan: dars jadvali, qaysi xona, dars neda, dars nerda, novi dars '];
+    $telegram->sendMessage($content);
+} elseif (
+    $req == '/dars' or
+    str_contains($req, 'dars jadvali') or
+    str_contains($req, 'qaysi xona') or
+    str_contains($req, 'dars neda') or
+    str_contains($req, 'dars nerda') or
+    str_contains($req, 'novi dars')
+
+
+
+
+) {
+    sendLessons();
+}
+
+function sendLessons()
+{
+
+    $data = getData();
+    $lessons = [];
     foreach ($data as $datum) {
-        $lesson=[];
-        $lesson['name']=$datum->subject->name;
-        $lesson['type']=$datum->trainingType->name;
-        $lesson['room']=$datum->auditorium->name;
-        $lesson['teacher']=$datum->employee->name;
-        $lesson['start']=$datum->lessonPair->start_time;
-        $lesson['end']=$datum->lessonPair->end_time;
-        $lesson['date']=date('d.m.Y',$datum->lesson_date);
-        $lessons[]=$lesson;
+        $lesson = [];
+        $lesson['name'] = $datum->subject->name;
+        $lesson['type'] = $datum->trainingType->name;
+        $lesson['room'] = $datum->auditorium->name;
+        $lesson['teacher'] = $datum->employee->name;
+        $lesson['start'] = $datum->lessonPair->start_time;
+        $lesson['end'] = $datum->lessonPair->end_time;
+        $lesson['date'] = date('d.m.Y', $datum->lesson_date);
+        $lessons[] = $lesson;
     }
-    $today=date('d.m.Y');
-    $todayLessons='';
+    $today = date('d.m.Y');
+    $todayLessons = '';
     foreach ($lessons as $lesson) {
-        if($lesson['date']==$today){
-            $todayLessons.=
-                "📘 ".
-                $lesson['name'].PHP_EOL.
-                '🏷 '.$lesson['type'].PHP_EOL.
-                '🏛 '.$lesson['room'].PHP_EOL.
-                '👤 '.$lesson['teacher'].PHP_EOL.
-                '⏰ '.$lesson['start'].
-                '-'.$lesson['end'].PHP_EOL.PHP_EOL;
+        if ($lesson['date'] == $today) {
+            $todayLessons .=
+                "📘 " .
+                $lesson['name'] . PHP_EOL .
+                '🏷 ' . $lesson['type'] . PHP_EOL .
+                '🏛 ' . $lesson['room'] . PHP_EOL .
+                '👤 ' . $lesson['teacher'] . PHP_EOL .
+                '⏰ ' . $lesson['start'] .
+                '-' . $lesson['end'] . PHP_EOL . PHP_EOL;
         }
     }
     sendText($todayLessons);
 
 
-} catch (Exception $e) {
-    sendText($e->getMessage());
 }
 
 function getToken()
