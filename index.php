@@ -23,10 +23,10 @@ function getToken()
     $request = new Request('POST', 'https://student.ubtuit.uz/rest/v1/auth/login');
     $res = $client->sendAsync($request, $options)->wait();
 //    file_put_contents('token.txt',$res->getBody()->data->token);
-return $res->getBody();
+return json_decode($res->getBody())->data->token;
 }
-echo $_ENV['HEMIS_LOGIN'];
-//show errors
+
+
 ini_set('display_errors', 1);
 try {
     echo getToken();
