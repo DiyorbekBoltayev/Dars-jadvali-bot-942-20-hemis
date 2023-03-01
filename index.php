@@ -68,8 +68,14 @@ function getData(){
         'Authorization' => 'Bearer '.getToken(),
 
     ];
+    try {
+
+
     $request = new Request('GET', 'https://student.ubtuit.uz/rest/v1/education/schedule', $headers);
     $res = $client->sendAsync($request)->wait();
+    } catch (Exception $e) {
+        sendText($e->getMessage());
+    }
 sendText('olindi');
     return json_decode($res->getBody())->data;
 
