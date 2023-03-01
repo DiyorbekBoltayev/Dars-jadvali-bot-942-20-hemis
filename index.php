@@ -12,10 +12,7 @@ $telegram->sendMessage([
     'chat_id'=>$chat_id,
     'text'=>'ishlamoqda'
 ]);
-$telegram->sendMessage([
-    'chat_id'=>$chat_id,
-    'text'=>json_encode(file_get_contents('token.txt'))
-]);
+
 
 try {
     $text= getData();
@@ -48,19 +45,16 @@ function getToken()
         ]];
     $request = new Request('POST', 'https://student.ubtuit.uz/rest/v1/auth/login');
     $res = $client->sendAsync($request, $options)->wait();
-    file_put_contents('token.txt',json_decode($res->getBody())->data->token);
-    global $telegram;
-    $telegram->sendMessage([
-        'chat_id'=>$telegram->ChatID(),
-        'text'=>json_decode($res->getBody())->data->token
-    ]);
+
+    return json_decode($res->getBody())->data->token;
+
 }
 
 function getData(){
-    getToken();
+
     $client = new Client(['verify' => false]);
     $headers = [
-        'Authorization' => 'Bearer '.file_get_contents('token.txt'),
+        'Authorization' => 'Bearer '.getToken(),
 
     ];
     $request = new Request('GET', 'https://student.ubtuit.uz/rest/v1/education/schedule', $headers);
