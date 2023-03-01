@@ -29,10 +29,10 @@ try {
             $todayLessons.=
                 "📘 ".
                 $lesson['name'].PHP_EOL.
-                '🏷 '.$lesson['type'].
-                '🏛 '.$lesson['room'].
-                '👤 '.$lesson['teacher'].
-                '⏰ '.$lesson['start'].
+                '🏷 '.$lesson['type'].PHP_EOL.
+                '🏛 '.$lesson['room'].PHP_EOL.
+                '👤 '.$lesson['teacher'].PHP_EOL.
+                '⏰ '.$lesson['start'].PHP_EOL.
                 '-'.$lesson['end'].PHP_EOL.PHP_EOL;
         }
     }
