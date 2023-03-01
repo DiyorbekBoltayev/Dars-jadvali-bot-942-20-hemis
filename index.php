@@ -57,7 +57,7 @@ function getToken()
 }
 
 function getData(){
-
+    getToken();
     $client = new Client(['verify' => false]);
     $headers = [
         'Authorization' => 'Bearer '.file_get_contents('token.txt'),
