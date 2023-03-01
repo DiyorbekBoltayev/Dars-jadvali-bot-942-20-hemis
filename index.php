@@ -7,26 +7,33 @@ require_once 'Telegram.php';
 
 $telegram=new Telegram($_ENV['TELEGRAM_BOT_TOKEN']);
 $chat_id=$telegram->ChatID();
-
-$telegram->sendMessage([
-    'chat_id'=>$chat_id,
-    'text'=>'ishlamoqda'
-]);
-
-
 try {
-    $text= getData();
-}catch (Exception $e){
-    $text=$e->getMessage();
+
+
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        'text' => 'ishlamoqda'
+    ]);
+
+
+    try {
+        $text = getData();
+    } catch (Exception $e) {
+        $text = $e->getMessage();
+    }
+
+
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        'text' => json_encode($text)
+    ]);
+
+} catch (Exception $e) {
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        'text' => $e->getMessage()
+    ]);
 }
-
-
-$telegram->sendMessage([
-    'chat_id'=>$chat_id,
-    'text'=>json_encode($text)
-]);
-
-
 function getToken()
 {
 
