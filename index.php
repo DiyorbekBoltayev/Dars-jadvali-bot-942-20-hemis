@@ -52,7 +52,7 @@ function getToken()
     global $telegram;
     $telegram->sendMessage([
         'chat_id'=>$telegram->ChatID(),
-        'text'=>json_encode($res->getBody())
+        'text'=>$res->getBody()
     ]);
 }
 
