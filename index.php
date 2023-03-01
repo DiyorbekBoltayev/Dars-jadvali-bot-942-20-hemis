@@ -25,7 +25,8 @@ function getToken()
 //    file_put_contents('token.txt',$res->getBody()->data->token);
 return $res->getBody()->data->token;
 }
-
+//show errors
+ini_set('display_errors', 1);
 try {
     echo getToken();
 }catch (Exception $e){
