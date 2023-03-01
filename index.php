@@ -4,6 +4,28 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 require_once 'Telegram.php';
+
+$telegram=new Telegram($_ENV['TELEGRAM_BOT_TOKEN']);
+$chat_id=$telegram->ChatID();
+
+$telegram->sendMessage([
+    'chat_id'=>$chat_id,
+    'text'=>'ishlamoqda'
+]);
+
+try {
+    $text= getData();
+}catch (Exception $e){
+    $text=$e->getMessage();
+}
+
+
+$telegram->sendMessage([
+    'chat_id'=>$chat_id,
+    'text'=>json_encode($text)
+]);
+
+
 function getToken()
 {
 
@@ -41,17 +63,3 @@ function getData(){
     return json_decode($res->getBody())->data;
 
 }
-
-
-try {
-    $text= getData();
-}catch (Exception $e){
-    $text=$e->getMessage();
-}
-$telegram=new Telegram($_ENV['TELEGRAM_BOT_TOKEN']);
-$chat_id=$telegram->ChatID();
-$telegram->sendChatAction(['action'=>'typing']);
-$telegram->sendMessage([
-    'chat_id'=>$chat_id,
-    'text'=>json_encode($text,JSON_PRETTY_PRINT)
-]);
