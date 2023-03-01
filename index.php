@@ -22,6 +22,7 @@ if ($telegram->text() == '/start') {
     str_contains($req, 'qaysi dars') or
     str_contains($req, 'dars neda') or
     str_contains($req, 'dars nerda') or
+    str_contains($req, 'nerda dars') or
     str_contains($req, 'kimni darsi') or
     str_contains($req, 'dars qatta') or
     str_contains($req, 'novvi dars') or
