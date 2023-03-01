@@ -16,7 +16,7 @@ if ($telegram->text() == '/start') {
     $content = ['chat_id' => $chat_id, 'text' => 'Assalomu alaykum, Bu bot yordamida 942-20 guruxi talabalarining joriy sanadagi dars jadvalini olishingiz mumkin, /dars deb yozing yoki shu manodagi matn yuboring, masalan: dars jadvali, qaysi xona, dars neda, dars nerda, novi dars '];
     $telegram->sendMessage($content);
 } elseif (
-    $req == '/dars' or
+    str_contains($req, '/dars') or
     str_contains($req, 'dars jadvali') or
     str_contains($req, 'qaysi xona') or
     str_contains($req, 'qaysi dars') or
