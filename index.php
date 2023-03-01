@@ -33,6 +33,8 @@ if ($telegram->text() == '/start') {
     str_contains($req, 'dars boma') or
     str_contains($req, 'dars bormi') or
     str_contains($req, 'dars borma') or
+    str_contains($req, 'para nerda') or
+    str_contains($req, 'kimni dars') or
     str_contains($req, 'novi dars')
 
 
