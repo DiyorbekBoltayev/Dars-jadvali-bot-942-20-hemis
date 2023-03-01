@@ -25,7 +25,7 @@ try {
 
     $telegram->sendMessage([
         'chat_id' => $chat_id,
-        'text' => "ishlamadi biror xatolik"
+        'text' => $text->code
     ]);
 
 } catch (Exception $e) {
