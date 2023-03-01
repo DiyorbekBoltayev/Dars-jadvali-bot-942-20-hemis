@@ -32,7 +32,7 @@ try {
                 '🏷 '.$lesson['type'].PHP_EOL.
                 '🏛 '.$lesson['room'].PHP_EOL.
                 '👤 '.$lesson['teacher'].PHP_EOL.
-                '⏰ '.$lesson['start'].PHP_EOL.
+                '⏰ '.$lesson['start'].
                 '-'.$lesson['end'].PHP_EOL.PHP_EOL;
         }
     }
