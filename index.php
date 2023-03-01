@@ -25,7 +25,7 @@ try {
 
     $telegram->sendMessage([
         'chat_id' => $chat_id,
-        'text' => $text->code
+        'text' => json_encode($text)
     ]);
 
 } catch (Exception $e) {
@@ -67,6 +67,12 @@ function getData(){
     $request = new Request('GET', 'https://student.ubtuit.uz/rest/v1/education/schedule', $headers);
     $res = $client->sendAsync($request)->wait();
 
-    return json_decode($res->getBody())->data;
+    $data = json_decode($res->getBody())->data;
+
+    if (empty($data)) {
+        throw new Exception('Error fetching data from API');
+    }
+
+    return $data;
 
 }
