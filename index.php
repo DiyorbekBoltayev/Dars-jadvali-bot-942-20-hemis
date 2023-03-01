@@ -22,14 +22,13 @@ function getToken()
         ]];
     $request = new Request('POST', 'https://student.ubtuit.uz/rest/v1/auth/login');
     $res = $client->sendAsync($request, $options)->wait();
-//    file_put_contents('token.txt',$res->getBody()->data->token);
-return json_decode($res->getBody())->data->token;
+    file_put_contents('token.txt',json_decode($res->getBody())->data->token);
 }
 
 
 ini_set('display_errors', 1);
 try {
-    echo getToken();
+    getToken();
 }catch (Exception $e){
     echo $e->getMessage();
 }
