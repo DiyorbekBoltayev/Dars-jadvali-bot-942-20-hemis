@@ -39,4 +39,13 @@ function storeData($day, $lessons): void
     $sql = "UPDATE `dars` SET `data` = '$lessons' WHERE `dars`.`day` = '$day'";
     mysqli_query($conn, $sql);
 }
+function getCustomDayLessons($day): array
+{
+    global $conn;
+    $day = mysqli_real_escape_string($conn, $day);
+    $sql = "SELECT * FROM `dars` WHERE `day`='$day' limit 1";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return json_decode($row['data'], true);
+}
 

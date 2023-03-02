@@ -14,6 +14,21 @@ $req=strtolower($req);
 try {
 
 
+    function sendWeekLessons($day){
+        $lessons=getCustomDayLessons($day);
+        $text=$lessons[0]['date'].' '.strtoupper($day)." kuni dars jadvali".PHP_EOL;
+        foreach ($lessons as $lesson){
+            $text.=
+                "📘 " .
+                $lesson['name'] . PHP_EOL .
+                '🏷 ' . $lesson['type'] . PHP_EOL .
+                '🏛 ' . $lesson['room'] . PHP_EOL .
+                '👤 ' . $lesson['teacher'] . PHP_EOL .
+                '⏰ ' . $lesson['start'] .
+                '-' . $lesson['end'] . PHP_EOL . PHP_EOL;
+        }
+        sendText($text);
+    }
     function sendLessons()
     {
         $lessons = getFormatedData();
@@ -51,10 +66,13 @@ try {
         ]);
     }
 
-    if ($telegram->text() == '/start') {
+    if ($req == '/start') {
         $content = ['chat_id' => $chat_id, 'text' => 'Assalomu alaykum, Bu bot yordamida 942-20 guruxi talabalarining joriy sanadagi dars jadvalini olishingiz mumkin, /dars deb yozing yoki shu manodagi matn yuboring, masalan: dars jadvali, qaysi xona, dars neda, dars nerda, novi dars '];
         $telegram->sendMessage($content);
-    } elseif (
+    }elseif (str_contains($req, '/dushanba')){
+        sendWeekLessons('dushanba');
+    }
+    elseif (
         str_contains($req, '/dars') or
         str_contains($req, 'dars jadvali') or
         str_contains($req, 'darsnerda') or
