@@ -12,39 +12,6 @@ $req=$telegram->Text();
 $req=strtolower($req);
 
 try {
-
-
-    if ($telegram->text() == '/start') {
-        $content = ['chat_id' => $chat_id, 'text' => 'Assalomu alaykum, Bu bot yordamida 942-20 guruxi talabalarining joriy sanadagi dars jadvalini olishingiz mumkin, /dars deb yozing yoki shu manodagi matn yuboring, masalan: dars jadvali, qaysi xona, dars neda, dars nerda, novi dars '];
-        $telegram->sendMessage($content);
-    } elseif (
-        str_contains($req, '/dars') or
-        str_contains($req, 'dars jadvali') or
-        str_contains($req, 'darsnerda') or
-        str_contains($req, 'dars yoqmi') or
-        str_contains($req, 'qaysi xona') or
-        str_contains($req, 'qaysi dars') or
-        str_contains($req, 'dars neda') or
-        str_contains($req, 'dars nerda') or
-        str_contains($req, 'nerda dars') or
-        str_contains($req, 'kimni darsi') or
-        str_contains($req, 'dars qatta') or
-        str_contains($req, 'novvi dars') or
-        str_contains($req, 'dars nichchada') or
-        str_contains($req, 'dars nichada') or
-        str_contains($req, 'dars qachon') or
-        str_contains($req, 'bomi dars') or
-        str_contains($req, 'dars bomi') or
-        str_contains($req, 'dars boma') or
-        str_contains($req, 'dars bormi') or
-        str_contains($req, 'dars borma') or
-        str_contains($req, 'para nerda') or
-        str_contains($req, 'novi dars')
-
-
-    ) {
-        sendLessons();
-    }
     getToken();
     function sendLessons()
     {
@@ -131,6 +98,39 @@ try {
             'reply_to_message_id' => $telegram->MessageID()
         ]);
     }
+
+    if ($telegram->text() == '/start') {
+        $content = ['chat_id' => $chat_id, 'text' => 'Assalomu alaykum, Bu bot yordamida 942-20 guruxi talabalarining joriy sanadagi dars jadvalini olishingiz mumkin, /dars deb yozing yoki shu manodagi matn yuboring, masalan: dars jadvali, qaysi xona, dars neda, dars nerda, novi dars '];
+        $telegram->sendMessage($content);
+    } elseif (
+        str_contains($req, '/dars') or
+        str_contains($req, 'dars jadvali') or
+        str_contains($req, 'darsnerda') or
+        str_contains($req, 'dars yoqmi') or
+        str_contains($req, 'qaysi xona') or
+        str_contains($req, 'qaysi dars') or
+        str_contains($req, 'dars neda') or
+        str_contains($req, 'dars nerda') or
+        str_contains($req, 'nerda dars') or
+        str_contains($req, 'kimni darsi') or
+        str_contains($req, 'dars qatta') or
+        str_contains($req, 'novvi dars') or
+        str_contains($req, 'dars nichchada') or
+        str_contains($req, 'dars nichada') or
+        str_contains($req, 'dars qachon') or
+        str_contains($req, 'bomi dars') or
+        str_contains($req, 'dars bomi') or
+        str_contains($req, 'dars boma') or
+        str_contains($req, 'dars bormi') or
+        str_contains($req, 'dars borma') or
+        str_contains($req, 'para nerda') or
+        str_contains($req, 'novi dars')
+
+
+    ) {
+        sendLessons();
+    }
+
 } catch (Exception $e) {
     $telegram->sendMessage([
         'chat_id' => $chat_id,
