@@ -29,28 +29,7 @@ try {
         }
         sendText($text);
     }
-    function sendLessons()
-    {
-        $lessons = getFormatedData();
 
-        $today = date('d.m.Y');
-        $todayLessons = '';
-        foreach ($lessons as $lesson) {
-            if ($lesson['date'] == $today) {
-                $todayLessons .=
-                    "📘 " .
-                    $lesson['name'] . PHP_EOL .
-                    '🏷 ' . $lesson['type'] . PHP_EOL .
-                    '🏛 ' . $lesson['room'] . PHP_EOL .
-                    '👤 ' . $lesson['teacher'] . PHP_EOL .
-                    '⏰ ' . $lesson['start'] .
-                    '-' . $lesson['end'] . PHP_EOL . PHP_EOL;
-            }
-        }
-        sendText($todayLessons);
-
-
-    }
 
     function dayName($date){
         return match (date('l',$date))
@@ -93,10 +72,11 @@ try {
         sendWeekLessons('juma');
     }elseif (str_contains($req, '/shanba')){
         sendWeekLessons('shanba');
-    }elseif (str_contains($req, '/yakshanba')){
-        sendWeekLessons('yakshanba');
     }elseif (str_contains($req, '/ertaga')){
-        sendWeekLessons(dayName(strtotime('+3 day')));
+        if (dayName(strtotime('+1 day'))=='yakshanba')
+            sendText('Ertaga yakshanba, dars yo\'q');
+        else
+            sendWeekLessons(dayName(strtotime('+1 day')));
     }
     elseif (
         str_contains($req, '/dars') or
@@ -124,7 +104,10 @@ try {
 
 
     ) {
-        sendWeekLessons(dayName(strtotime('today')));
+        if (dayName(strtotime('today'))=='yakshanba')
+            sendText('Bugun yakshanba, dars yo\'q');
+        else
+            sendWeekLessons(dayName(strtotime('today')));
     }
 
 } catch (Exception $e) {
