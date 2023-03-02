@@ -14,5 +14,12 @@ function getTokenDB(){
     $sql="SELECT * FROM `dars` WHERE `day`='token' limit 1";
     $result=mysqli_query($conn,$sql);
     $row=mysqli_fetch_assoc($result);
+    $today = new DateTime(date('Y-m-d'));
+
+    $diff = $today->diff($row['created'])->format('%a');
+    if($diff>5){
+        getToken();
+        return getTokenDB();
+    }
     return $row['data'];
 }
