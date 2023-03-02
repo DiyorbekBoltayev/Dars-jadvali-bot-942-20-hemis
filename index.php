@@ -96,7 +96,7 @@ try {
 
     function startAndEndOfWeek():array
     {
-        $today = new DateTime('2023-03-06');
+        $today = new DateTime();
         $today->setTimezone(new DateTimeZone('Asia/Tashkent'));
         $startOfWeek = clone $today;
         $startOfWeek->modify('this week');
@@ -106,7 +106,7 @@ try {
         $endOfWeekStr = $endOfWeek->format('Y-m-d');
         return [$startOfWeekStr, $endOfWeekStr];
     }
-    function getCurrentWeekLessons(): void
+    function getCurrentWeekLessons(): array
     {
         $lessons = getFormatedData();
         $week = startAndEndOfWeek();
@@ -114,15 +114,26 @@ try {
         foreach ($lessons as $lesson) {
             if (strtotime($lesson['date']) >= strtotime($week[0]) && strtotime($lesson['date']) <= strtotime($week[1])) {
                 $currentWeekLessons[$lesson['date']][]=$lesson;
-
             }
         }
-        echo "<pre>";
-       var_dump($currentWeekLessons);
-        echo "</pre>";
-//        sendText($currentWeekLessons);
+        return $currentWeekLessons;
     }
-    getCurrentWeekLessons();
+    function dayByDayLessons():array
+    {
+        $lessons = getCurrentWeekLessons();
+        $array= [];
+        $days=['dushanba','seshanba','chorshanba','payshanba','juma','shanba','yakshanba'];
+        $day=0;
+        foreach ($lessons as $lesson){
+           $array[$days[$day]]=$lesson;
+            $day+=1;
+        }
+        return $array;
+
+    }
+    echo '<pre>';
+    print_r(dayByDayLessons());
+    echo '</pre>';
 
     function sendText($text)
     {
