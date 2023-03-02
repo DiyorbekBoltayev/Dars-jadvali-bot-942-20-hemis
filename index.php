@@ -110,9 +110,9 @@ try {
     {
         $lessons = getFormatedData();
         $week = startAndEndOfWeek();
-        $currentWeekLessons = '';
+        $currentWeekLessons = 'darslar'.PHP_EOL;
         foreach ($lessons as $lesson) {
-            if ($lesson['date'] >= $week[0] && $lesson['date'] <= $week[1]) {
+            if (strtotime($lesson['date']) >= strtotime($week[0]) && strtotime($lesson['date']) <= strtotime($week[1])) {
                 $currentWeekLessons .=
                     "📘 " .
                     $lesson['name'] . PHP_EOL .
@@ -123,13 +123,11 @@ try {
                     '-' . $lesson['end'] . PHP_EOL . PHP_EOL;
             }
         }
-       echo $currentWeekLessons;
+       var_dump($currentWeekLessons);
 //        sendText($currentWeekLessons);
     }
     getCurrentWeekLessons();
-    echo '<pre>';
-    var_dump(getFormatedData());
-    echo '</pre>';
+
     function sendText($text)
     {
         global $telegram, $chat_id;
