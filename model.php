@@ -15,8 +15,8 @@ function getTokenDB(){
     $result=mysqli_query($conn,$sql);
     $row=mysqli_fetch_assoc($result);
     $today = new DateTime(date('Y-m-d'));
-
-    $diff = $today->diff($row['created'])->format('%a');
+    $date1 = new DateTime($row['created']);
+    $diff = $today->diff($date1)->format('%a');
     if($diff>5){
         getToken();
         return getTokenDB();
