@@ -52,7 +52,19 @@ try {
 
     }
 
+    function dayName($date){
+        return match (date('l',$date))
+        {
+            'Monday' => 'dushanba',
+            'Tuesday' => 'seshanba',
+            'Wednesday' => 'chorshanba',
+            'Thursday' => 'payshanba',
+            'Friday' => 'juma',
+            'Saturday' => 'shanba',
+            'Sunday' => 'yakshanba',
+        };
 
+    }
 
 
 
@@ -84,7 +96,7 @@ try {
     }elseif (str_contains($req, '/yakshanba')){
         sendWeekLessons('yakshanba');
     }elseif (str_contains($req, '/ertaga')){
-        sendWeekLessons('ertaga');
+        sendWeekLessons(dayName(strtotime('+1 day')));
     }
     elseif (
         str_contains($req, '/dars') or
@@ -112,7 +124,7 @@ try {
 
 
     ) {
-        sendLessons();
+        sendWeekLessons(dayName(strtotime('today')));
     }
 
 } catch (Exception $e) {
