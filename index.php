@@ -96,7 +96,7 @@ try {
     }elseif (str_contains($req, '/yakshanba')){
         sendWeekLessons('yakshanba');
     }elseif (str_contains($req, '/ertaga')){
-        sendWeekLessons(dayName(strtotime('+1 day')));
+        sendWeekLessons(dayName(strtotime('+3 day')));
     }
     elseif (
         str_contains($req, '/dars') or
