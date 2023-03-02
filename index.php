@@ -88,12 +88,45 @@ try {
             $lesson['start'] = $datum->lessonPair->start_time;
             $lesson['end'] = $datum->lessonPair->end_time;
             $lesson['date'] = date('d.m.Y', $datum->lesson_date);
-            $lesson['week'] = date('W', $datum->lesson_date);
-            $lesson['w'] = date('W', $datum->_week);
             $lessons[] = $lesson;
         }
         return $lessons;
     }
+
+
+    function startAndEndOfWeek():array
+    {
+        $today = new DateTime();
+        $today->setTimezone(new DateTimeZone('Asia/Tashkent'));
+        $startOfWeek = clone $today;
+        $startOfWeek->modify('this week');
+        $endOfWeek = clone $today;
+        $endOfWeek->modify('this week +6 days');
+        $startOfWeekStr = $startOfWeek->format('Y-m-d');
+        $endOfWeekStr = $endOfWeek->format('Y-m-d');
+        return [$startOfWeekStr, $endOfWeekStr];
+    }
+    function getCurrentWeekLessons(): void
+    {
+        $lessons = getFormatedData();
+        $week = startAndEndOfWeek();
+        $currentWeekLessons = '';
+        foreach ($lessons as $lesson) {
+            if ($lesson['date'] >= $week[0] && $lesson['date'] <= $week[1]) {
+                $currentWeekLessons .=
+                    "📘 " .
+                    $lesson['name'] . PHP_EOL .
+                    '🏷 ' . $lesson['type'] . PHP_EOL .
+                    '🏛 ' . $lesson['room'] . PHP_EOL .
+                    '👤 ' . $lesson['teacher'] . PHP_EOL .
+                    '⏰ ' . $lesson['start'] .
+                    '-' . $lesson['end'] . PHP_EOL . PHP_EOL;
+            }
+        }
+       echo $currentWeekLessons;
+//        sendText($currentWeekLessons);
+    }
+    getCurrentWeekLessons();
     echo '<pre>';
     var_dump(getFormatedData());
     echo '</pre>';
