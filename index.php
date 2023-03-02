@@ -96,7 +96,7 @@ try {
 
     function startAndEndOfWeek():array
     {
-        $today = new DateTime();
+        $today = new DateTime('2023-03-05');
         $today->setTimezone(new DateTimeZone('Asia/Tashkent'));
         $startOfWeek = clone $today;
         $startOfWeek->modify('this week');
