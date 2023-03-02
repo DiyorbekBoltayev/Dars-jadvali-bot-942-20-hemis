@@ -120,10 +120,13 @@ try {
                     '🏛 ' . $lesson['room'] . PHP_EOL .
                     '👤 ' . $lesson['teacher'] . PHP_EOL .
                     '⏰ ' . $lesson['start'] .
-                    '-' . $lesson['end'] . PHP_EOL . PHP_EOL;
+                    '-' . $lesson['end'] . PHP_EOL
+                    . $lesson['date'] . PHP_EOL . PHP_EOL;
             }
         }
+        echo "<pre>";
        var_dump($currentWeekLessons);
+        echo "</pre>";
 //        sendText($currentWeekLessons);
     }
     getCurrentWeekLessons();
