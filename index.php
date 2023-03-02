@@ -10,7 +10,7 @@ $telegram=new Telegram($_ENV['TELEGRAM_BOT_TOKEN']);
 $chat_id=$telegram->ChatID();
 $req=$telegram->Text();
 $req=strtolower($req);
-
+//TODO yakshanba kuni ertaga buyrug'ida xato natija qaytaradi
 try {
 
 
