@@ -70,7 +70,7 @@ try {
         $request = new Request('POST', 'https://student.ubtuit.uz/rest/v1/auth/login');
         $res = $client->sendAsync($request, $options)->wait();
 
-        setToken(json_decode($res->getBody())->data->token);
+        setToken(json_decode($res->getBody())->data->token,date('Y-m-d'));
 
     }
 

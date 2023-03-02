@@ -1,11 +1,12 @@
 <?php
 require_once 'connection.php';
 
-function setToken($token): void
+function setToken($token,$created): void
 {
     global $conn;
     $token= mysqli_real_escape_string($conn,$token);
-    $sql="UPDATE `dars` SET `data` = '$token' WHERE `dars`.`day` = 'token'";
+    $created= mysqli_real_escape_string($conn,$created);
+    $sql="UPDATE `dars` SET `data` = '$token',`created` = '$created' WHERE `dars`.`day` = 'token'";
     mysqli_query($conn,$sql);
 }
 function getTokenDB(){
