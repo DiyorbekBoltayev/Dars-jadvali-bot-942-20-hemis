@@ -71,6 +71,20 @@ try {
         $telegram->sendMessage($content);
     }elseif (str_contains($req, '/dushanba')){
         sendWeekLessons('dushanba');
+    }elseif (str_contains($req, '/seshanba')){
+        sendWeekLessons('seshanba');
+    }elseif (str_contains($req, '/chorshanba')){
+        sendWeekLessons('chorshanba');
+    }elseif (str_contains($req, '/payshanba')){
+        sendWeekLessons('payshanba');
+    }elseif (str_contains($req, '/juma')){
+        sendWeekLessons('juma');
+    }elseif (str_contains($req, '/shanba')){
+        sendWeekLessons('shanba');
+    }elseif (str_contains($req, '/yakshanba')){
+        sendWeekLessons('yakshanba');
+    }elseif (str_contains($req, '/ertaga')){
+        sendWeekLessons('ertaga');
     }
     elseif (
         str_contains($req, '/dars') or
