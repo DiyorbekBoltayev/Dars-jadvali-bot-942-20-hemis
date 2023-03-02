@@ -110,18 +110,11 @@ try {
     {
         $lessons = getFormatedData();
         $week = startAndEndOfWeek();
-        $currentWeekLessons = 'darslar'.PHP_EOL;
+        $currentWeekLessons = [];
         foreach ($lessons as $lesson) {
             if (strtotime($lesson['date']) >= strtotime($week[0]) && strtotime($lesson['date']) <= strtotime($week[1])) {
-                $currentWeekLessons .=
-                    "📘 " .
-                    $lesson['name'] . PHP_EOL .
-                    '🏷 ' . $lesson['type'] . PHP_EOL .
-                    '🏛 ' . $lesson['room'] . PHP_EOL .
-                    '👤 ' . $lesson['teacher'] . PHP_EOL .
-                    '⏰ ' . $lesson['start'] .
-                    '-' . $lesson['end'] . PHP_EOL
-                    . $lesson['date'] . PHP_EOL . PHP_EOL;
+                $currentWeekLessons[$lesson['date']][]=$lesson;
+
             }
         }
         echo "<pre>";
