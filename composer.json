@@ -1,6 +1,8 @@
 {
     "require": {
         "guzzlehttp/guzzle": "^7.5",
-      "ext-json": "*"
+      "ext-json": "*",
+      "ext-mysqli": "*",
+        "vlucas/phpdotenv": "^5.5"
     }
 }
