@@ -39,7 +39,7 @@ try {
 
 
 
-    storeDataDayByDay();
+
 
     function sendText($text)
     {
