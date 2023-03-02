@@ -89,6 +89,7 @@ try {
             $lesson['end'] = $datum->lessonPair->end_time;
             $lesson['date'] = date('d.m.Y', $datum->lesson_date);
             $lesson['week'] = date('W', $datum->lesson_date);
+            $lesson['w'] = date('W', $datum->_week);
             $lessons[] = $lesson;
         }
         return $lessons;
