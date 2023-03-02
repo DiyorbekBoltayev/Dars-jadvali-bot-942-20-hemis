@@ -13,22 +13,11 @@ $req=strtolower($req);
 
 try {
 
+
     function sendLessons()
     {
+        $lessons = getFormatedData();
 
-        $data = getData();
-        $lessons = [];
-        foreach ($data as $datum) {
-            $lesson = [];
-            $lesson['name'] = $datum->subject->name;
-            $lesson['type'] = $datum->trainingType->name;
-            $lesson['room'] = $datum->auditorium->name;
-            $lesson['teacher'] = $datum->employee->name;
-            $lesson['start'] = $datum->lessonPair->start_time;
-            $lesson['end'] = $datum->lessonPair->end_time;
-            $lesson['date'] = date('d.m.Y', $datum->lesson_date);
-            $lessons[] = $lesson;
-        }
         $today = date('d.m.Y');
         $todayLessons = '';
         foreach ($lessons as $lesson) {
@@ -47,9 +36,7 @@ try {
 
 
     }
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+
 
     function getToken()
     {
@@ -88,7 +75,26 @@ try {
 
 
     }
-
+    function getFormatedData()
+    {
+        $data = getData();
+        $lessons = [];
+        foreach ($data as $datum) {
+            $lesson = [];
+            $lesson['name'] = $datum->subject->name;
+            $lesson['type'] = $datum->trainingType->name;
+            $lesson['room'] = $datum->auditorium->name;
+            $lesson['teacher'] = $datum->employee->name;
+            $lesson['start'] = $datum->lessonPair->start_time;
+            $lesson['end'] = $datum->lessonPair->end_time;
+            $lesson['date'] = date('d.m.Y', $datum->lesson_date);
+            $lessons[] = $lesson;
+        }
+        return $lessons;
+    }
+    echo '<pre>';
+    var_dump(getFormatedData());
+    echo '</pre>';
     function sendText($text)
     {
         global $telegram, $chat_id;
