@@ -82,6 +82,15 @@ try {
         str_contains($req, '/dars') or
         str_contains($req, 'dars jadvali') or
         str_contains($req, 'darsnerda') or
+        str_contains($req, 'para novi') or
+        str_contains($req, 'para nerda') or
+        str_contains($req, 'para novvi') or
+        str_contains($req, 'par nerda') or
+        str_contains($req, 'par novvi') or
+        str_contains($req, 'par novi') or
+        str_contains($req, 'pora nerda') or
+        str_contains($req, 'pora novi') or
+        str_contains($req, 'pora novvi') or
         str_contains($req, 'dars yoqmi') or
         str_contains($req, 'qaysi xona') or
         str_contains($req, 'qaysi dars') or
@@ -108,8 +117,14 @@ try {
             sendText('Bugun yakshanba, dars yo\'q');
         else
             sendWeekLessons(dayName(strtotime('today')));
+    }elseif (str_contains($req, 'ertang') and str_contains($req, 'dars')
+    or str_contains($req, 'ertanga') and str_contains($req, 'dars')
+    ) {
+        if (dayName(strtotime('+1 day')) == 'yakshanba')
+            sendText('Ertaga yakshanba, dars yo\'q');
+        else
+            sendWeekLessons(dayName(strtotime('today')));
     }
-
 } catch (Exception $e) {
     $telegram->sendMessage([
         'chat_id' => $chat_id,
