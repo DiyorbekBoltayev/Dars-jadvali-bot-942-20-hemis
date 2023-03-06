@@ -22,6 +22,6 @@ Boshqa guruhlar uchun foydalanish uchun `.env` fayldagi maydonlarni to'ldirish l
 `TELEGRAM_BOT_TOKEN` - bot tokeni
 `HEMIS_USERNAME` - hemis logini
 `HEMIS_PASSWORD` - hemis paroli
-qaysi talaba login paroli kiritilsa shu talaba o'quvchi gurh dars jadvalini olishi mumkin.
+qaysi talaba login paroli kiritilsa shu talaba o'qiyotgan guruh dars jadvalini olish mumkin.
 <br>
 `yulduzchani bosish esdan chiqmasin :)`
