@@ -17,6 +17,10 @@ try {
 
     function sendWeekLessons($day){
         $lessons=getCustomDayLessons($day);
+        if (count($lessons)==0){
+            sendText($day.' da dars yo\'q');
+        }else{
+
         $text=$lessons[0]['date'].' '.strtoupper($day)." kuni dars jadvali".PHP_EOL;
         foreach ($lessons as $lesson){
             $text.=
@@ -29,6 +33,8 @@ try {
                 '-' . $lesson['end'] . PHP_EOL . PHP_EOL;
         }
         sendText($text);
+        }
+
     }
 
 
