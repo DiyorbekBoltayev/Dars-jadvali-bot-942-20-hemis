@@ -32,22 +32,10 @@ try {
     }
 
 
-    function dayName($date){
-        return match (date('l',$date))
-        {
-            'Monday' => 'dushanba',
-            'Tuesday' => 'seshanba',
-            'Wednesday' => 'chorshanba',
-            'Thursday' => 'payshanba',
-            'Friday' => 'juma',
-            'Saturday' => 'shanba',
-            'Sunday' => 'yakshanba',
-        };
 
-    }
-
-
-
+echo "<pre>";
+var_dump(dayByDayLessons());
+echo "</pre>";
     function sendText($text)
     {
         global $telegram, $chat_id;

@@ -78,7 +78,7 @@ function getCurrentWeekLessons(): array
     $currentWeekLessons = [];
     foreach ($lessons as $lesson) {
         if (strtotime($lesson['date']) >= strtotime($week[0]) && strtotime($lesson['date']) <= strtotime($week[1])) {
-            $currentWeekLessons[$lesson['date']][]=$lesson;
+            $currentWeekLessons[dayName(strtotime($lesson['date']))][]=$lesson;
         }
     }
     return $currentWeekLessons;
@@ -86,13 +86,24 @@ function getCurrentWeekLessons(): array
 function dayByDayLessons():array
 {
     $lessons = getCurrentWeekLessons();
-    $array= [];
-    $days=['dushanba','seshanba','chorshanba','payshanba','juma','shanba','yakshanba'];
-    $day=0;
-    foreach ($lessons as $lesson){
-        $array[$days[$day]]=$lesson;
-        $day+=1;
+    $days=['dushanba'=>[],'seshanba'=>[],'chorshanba'=>[],'payshanba'=>[],'juma'=>[],'shanba'=>[],'yakshanba'=>[]];
+
+    foreach ($lessons as $key=>$lesson){
+        $days[$key]=$lesson;
     }
-    return $array;
+    return $days;
+}
+
+function dayName($date){
+    return match (date('l',$date))
+    {
+        'Monday' => 'dushanba',
+        'Tuesday' => 'seshanba',
+        'Wednesday' => 'chorshanba',
+        'Thursday' => 'payshanba',
+        'Friday' => 'juma',
+        'Saturday' => 'shanba',
+        'Sunday' => 'yakshanba',
+    };
 
 }
