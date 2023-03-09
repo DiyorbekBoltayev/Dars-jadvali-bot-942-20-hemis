@@ -39,9 +39,7 @@ try {
 
 
 
-echo "<pre>";
-var_dump(dayByDayLessons());
-echo "</pre>";
+
     function sendText($text)
     {
         global $telegram, $chat_id;
