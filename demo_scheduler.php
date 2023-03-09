@@ -8,11 +8,9 @@ $message="Bu bot juda foydali bo'ldi";
 $message = $telegram->sendMessage([
     'chat_id' => $chat_id,
     'text' => $message,
-    'message_thread_id' => 22,
 ]);
 
 $telegram->pinChatMessage([
     'chat_id' => $chat_id,
     'message_id' => $message->getMessageId(),
-    'message_thread_id' => 22,
 ]);
