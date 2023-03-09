@@ -72,12 +72,12 @@ try {
             sendWeekLessons(dayName(strtotime('+1 day')));
     }
     elseif (str_contains($req, 'ertang') and str_contains($req, 'dars')
-        or str_contains($req, 'ertanga') and str_contains($req, 'dars')
+        or str_contains($req, 'ertaga') and str_contains($req, 'dars')
     ) {
         if (dayName(strtotime('+1 day')) == 'yakshanba')
             sendText('Ertaga yakshanba, dars yo\'q');
         else
-            sendWeekLessons(dayName(strtotime('today')));
+            sendWeekLessons(dayName(strtotime('+1 day')));
     }
     elseif (
         str_contains($req, '/dars') or
