@@ -11,9 +11,20 @@ $message = $telegram->sendMessage([
     'text' => $message,
     'message_thread_id' => 22,
 ]);
+try {
+    $telegram->pinChatMessage([
+        'chat_id' => $chat_id,
+        'message_id' => $message->getMessageId(),
+        'disable_notification' => false,
+    ]);
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        'text' => 'Pinned',
+    ]);
+} catch (Exception $e) {
 
-$telegram->pinChatMessage([
-    'chat_id' => $chat_id,
-    'message_id' => $message->getMessageId(),
-    'disable_notification' => false,
-]);
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        'text' => $e->getMessage(),
+    ]);
+}
