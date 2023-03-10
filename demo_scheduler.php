@@ -13,7 +13,7 @@ $message = $telegram->sendMessage([
 ]);
 $telegram->sendMessage([
     'chat_id' => $chat_id,
-    'text' => json_encode($message,'JSON_PRETTY_PRINT'),
+    'text' => json_encode($message),
 ]);
 $telegram->sendMessage([
     'chat_id' => $chat_id,
@@ -27,7 +27,7 @@ try {
     ]);
     $telegram->sendMessage([
         'chat_id' => $chat_id,
-        'text' => json_encode($a,'JSON_PRETTY_PRINT'),
+        'text' => json_encode($a),
     ]);
 } catch (Exception $e) {
 
