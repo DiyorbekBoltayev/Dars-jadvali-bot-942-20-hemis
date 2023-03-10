@@ -11,15 +11,23 @@ $message = $telegram->sendMessage([
     'text' => $message,
     'message_thread_id' => 22,
 ]);
+$telegram->sendMessage([
+    'chat_id' => $chat_id,
+    'text' => json_encode($message,'JSON_PRETTY_PRINT'),
+]);
+$telegram->sendMessage([
+    'chat_id' => $chat_id,
+    'text' => $message->getMessageId(),
+]);
 try {
-    $telegram->pinChatMessage([
+    $a=$telegram->pinChatMessage([
         'chat_id' => $chat_id,
         'message_id' => $message->getMessageId(),
         'disable_notification' => false,
     ]);
     $telegram->sendMessage([
         'chat_id' => $chat_id,
-        'text' => 'Pinned',
+        'text' => json_encode($a,'JSON_PRETTY_PRINT'),
     ]);
 } catch (Exception $e) {
 
