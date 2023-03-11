@@ -19,7 +19,7 @@ function getToken()
                 'contents' => $_ENV['HEMIS_PASSWORD']
             ]
         ]];
-    $request = new Request('POST', 'https://student.ubtuit.uz/rest/v1/auth/login');
+    $request = new Request('POST', $_ENV['HEMIS_LOGIN_URL']);
     $res = $client->sendAsync($request, $options)->wait();
 
     setToken(json_decode($res->getBody())->data->token,date('Y-m-d'));
@@ -33,7 +33,7 @@ function getData()
         'Authorization' => 'Bearer ' . getTokenDB(),
 
     ];
-    $request = new Request('GET', 'https://student.ubtuit.uz/rest/v1/education/schedule', $headers);
+    $request = new Request('GET', $_ENV['HEMIS_SCHEDULE_URL'], $headers);
     $res = $client->sendAsync($request)->wait();
 
     return json_decode($res->getBody())->data;
