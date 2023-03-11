@@ -20,8 +20,7 @@ if (dayName(strtotime('today')) == 'yakshanba' || count(getCustomDayLessons(dayN
         $chat_id = -1001417980834;
         $telegram->sendMessage([
             'chat_id' => $chat_id,
-            'text' => $text,
-            'message_thread_id' => 80680,
+            'text' => $text
         ]);
 
 
