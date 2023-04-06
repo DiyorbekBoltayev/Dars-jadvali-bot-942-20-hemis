@@ -10,7 +10,7 @@ $telegram=new Telegram($_ENV['TELEGRAM_BOT_TOKEN']);
 $chat_id=$telegram->ChatID();
 $req=$telegram->Text();
 $req=strtolower($req);
-echo "Botdan foydalanish "."<a href='https://t.me/Dars_Jadvali_942_20_HEMIS_bot'>https://t.me/Dars_Jadvali_942_20_HEMIS_bot</a>";
+echo ""."<a href='https://docs.google.com/document/d/13qBQn1xGVr0nbCmg2PNnE7idN8tntiQaHXPgfYutYzE/edit'>google docs faylga link </a>";
 //TODO yakshanba kuni ertaga buyrug'ida xato natija qaytaradi
 try {
 
