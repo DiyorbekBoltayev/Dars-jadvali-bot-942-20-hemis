@@ -93,7 +93,10 @@ try {
         str_contains($req, 'pora nerda') or
         str_contains($req, 'pora novi') or
         str_contains($req, 'pora novvi') or
-        str_contains($req, 'dars yoqmi') or
+        str_contains($req, 'dars yoqmi') or        
+        str_contains($req, 'dara nada') or        
+        str_contains($req, 'dara nerda') or
+        str_contains($req, 'dara neda') or
         str_contains($req, 'qaysi xona') or
         str_contains($req, 'qaysi dars') or
         str_contains($req, 'dars neda') or
